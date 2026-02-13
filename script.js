@@ -79,10 +79,16 @@ function spawnError() {
 
     const errorMessages = [
         "Error: Heart.exe is missing.",
-        "Warning: You look cute today.",
+        "Warning: Pari.dll has stopped responding.",
         "System Failure: Cannot accept 'No'.",
-        "Critical Error: Hate overflow.",
-        "Unauthorized Access: Kiss required."
+        "Critical Error: Hate overflow, why do you hate me?",
+        "Unauthorized Access: Kiss required.",
+        "Error: 'No' button is currently in a relationship with 'Yes'.",
+        "Critical: Don ko pakadna mushkil hi nahi, impossible hai.",
+        "System Alert: You look too cute to quit.",
+        "Error 404: Rejection not found.",
+        "Fatal Exception: Life.exe requires Pari to run.",
+        "Warning: Heart rate is going 'Dhak Dhak'.",
     ];
     const msg = errorMessages[Math.floor(Math.random() * errorMessages.length)];
 
@@ -96,7 +102,6 @@ function spawnError() {
 
     if (desktop) {
         desktop.appendChild(win);
-        // Shake logic has been completely removed from here
     }
 }
 
@@ -176,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
             spawnError();
         };
 
-        // Attach both for maximum compatibility
         noBtn.addEventListener('touchstart', handleNo, { passive: false });
         noBtn.addEventListener('click', handleNo);
     }
