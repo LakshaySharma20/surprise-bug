@@ -1,0 +1,102 @@
+/* Windows 98 Teal Background */
+body {
+    /* 1. The Look */
+    background-color: #008080; /* Classic Windows Teal */
+    font-family: 'Pixelated MS Sans Serif', Arial, sans-serif;
+
+    /* 2. The Layout */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 3. The iPhone Magic Fixes */
+    height: 100vh;       /* Fallback for old browsers */
+    height: 100dvh;      /* "Dynamic Viewport Height" - Fixes Safari Address Bar issues */
+    overflow: hidden;    /* PREVENTS SCROLLING completely */
+
+    /* 4. Interaction Fixes */
+    user-select: none;           /* She can't highlight text by accident */
+    -webkit-user-select: none;   /* Safari specific version */
+    touch-action: manipulation;  /* Disables "Double-Tap to Zoom" delay */
+}
+
+/* Center the main window */
+.main-window {
+    width: 300px;
+    z-index: 10;
+    position: relative;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+}
+
+/* Popups that will appear randomly */
+.popup {
+    position: absolute;
+    width: 250px;
+    z-index: 100; /* Must be higher than main window */
+    animation: flash 0.1s;
+}
+
+@keyframes flash {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* Blue Screen of Death Styling */
+#bsod {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #0000AA;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 40px;
+    box-sizing: border-box;
+    z-index: 9999;
+    overflow-y: auto;
+}
+
+.hidden { display: none; }
+
+.bsod-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.polaroid {
+    background: white;
+    padding: 10px;
+    margin-top: 20px;
+    max-width: 300px;
+    transform: rotate(-2deg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.final-message {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* THE SCREEN SHAKE ANIMATION */
+@keyframes earthquake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-3px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.shake-effect {
+    animation: earthquake 0.5s; /* Shakes for 0.5 seconds */
+    animation-iteration-count: 1;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent; /* Removes grey tap box on iPhone */
+}
