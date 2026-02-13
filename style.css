@@ -1,83 +1,302 @@
-/* Windows 98 Teal Background */
-body {
-    /* 1. The Look */
-    background-color: #008080; /* Classic Windows Teal */
-    font-family: 'Pixelated MS Sans Serif', Arial, sans-serif;
+/* =========================================
+   1. CORE SETUP & IPHONE FIXES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-    /* 2. The Layout */
+:root {
+    /* Windows 98 Color Palette */
+    --teal: #008080;
+    --gray: #c0c0c0;
+    --blue: #000080;
+    --white: #ffffff;
+    --light-gray: #dfdfdf;
+    --dark-gray: #808080;
+}
+
+body {
+    /* Retro Polka Dot Background */
+    background-color: var(--teal);
+    background-image: radial-gradient(#006666 15%, transparent 16%),
+    radial-gradient(#006666 15%, transparent 16%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* IPHONE LAYOUT LOCK (Crucial) */
     margin: 0;
     padding: 0;
+    width: 100vw;
+    height: 100dvh; /* Ignores Safari address bar expansion */
+    overflow: hidden; /* No scrolling allowed */
+
+    /* SAFE AREAS (Respects Notch & Home Bar) */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    box-sizing: border-box;
+
+    /* PREVENT IPHONE GESTURES & ZOOM */
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    /* CENTER CONTENT */
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* 3. The iPhone Magic Fixes */
-    height: 100vh;       /* Fallback for old browsers */
-    height: 100dvh;      /* "Dynamic Viewport Height" - Fixes Safari Address Bar issues */
-    overflow: hidden;    /* PREVENTS SCROLLING completely */
-
-    /* 4. Interaction Fixes */
-    user-select: none;           /* She can't highlight text by accident */
-    -webkit-user-select: none;   /* Safari specific version */
-    touch-action: manipulation;  /* Disables "Double-Tap to Zoom" delay */
 }
 
-/* Center the main window */
-.main-window {
-    width: 300px;
-    z-index: 10;
-    position: relative;
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+/* Make all buttons feel instant on tap */
+button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
 }
 
-/* Popups that will appear randomly */
-.popup {
-    position: absolute;
-    width: 250px;
-    z-index: 100; /* Must be higher than main window */
-    animation: flash 0.1s;
-}
-
-@keyframes flash {
-    0% { transform: scale(0.9); }
-    100% { transform: scale(1); }
-}
-
-/* Blue Screen of Death Styling */
-#bsod {
+/* =========================================
+   2. BOOT SCREEN (The Intro)
+   ========================================= */
+#boot-screen {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #0000AA;
-    color: white;
+    background: black;
+    color: #00FF00; /* Retro Hacker Green */
     font-family: 'Courier New', Courier, monospace;
-    padding: 40px;
+    z-index: 99999; /* On top of everything */
+    padding: 20px;
     box-sizing: border-box;
-    z-index: 9999;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.hidden { display: none; }
-
-.bsod-content {
-    max-width: 800px;
-    margin: 0 auto;
+.boot-text p {
+    margin: 5px 0;
+    font-size: 14px;
+    text-shadow: 0 0 5px #00FF00;
 }
 
-.polaroid {
-    background: white;
-    padding: 10px;
-    margin-top: 20px;
+.loading-bar-container {
+    width: 100%;
     max-width: 300px;
-    transform: rotate(-2deg);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    height: 20px;
+    border: 2px solid #00FF00;
+    margin-top: 20px;
+    padding: 2px;
 }
 
-.final-message {
+.loading-bar {
+    height: 100%;
+    background: #00FF00;
+    width: 0%;
+    transition: width 0.2s;
+}
+
+/* Hide OS elements initially */
+#desktop, .desktop-icons, .taskbar {
+    display: none;
+}
+
+/* =========================================
+   3. LOVE OS INTERFACE
+   ========================================= */
+/* Desktop Icons */
+.desktop-icons {
+    position: absolute;
+    top: max(15px, env(safe-area-inset-top));
+    left: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    z-index: 5;
+}
+
+.icon {
+    width: 70px;
     text-align: center;
-    margin-top: 50px;
+    color: white;
+    text-shadow: 1px 1px 0px black;
 }
 
-/* THE SCREEN SHAKE ANIMATION */
+.icon img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+    pointer-events: none;
+}
+
+.icon p {
+    font-size: 11px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Taskbar */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: var(--gray);
+    border-top: 2px solid var(--white);
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    padding-bottom: env(safe-area-inset-bottom);
+    box-sizing: content-box;
+    z-index: 999;
+}
+
+.start-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 8px;
+    border: 2px solid;
+    border-color: var(--white) var(--dark-gray) var(--dark-gray) var(--white);
+    background: var(--gray);
+    margin-right: 5px;
+}
+
+.taskbar-divider {
+    width: 2px;
+    height: 28px;
+    background: gray;
+    border-right: 1px solid white;
+    margin: 0 5px;
+}
+
+.tasks {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.task-item {
+    background: var(--light-gray);
+    padding: 4px 8px;
+    border: 2px solid;
+    border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.tray {
+    border: 2px solid;
+    border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+    padding: 4px 8px;
+    margin-left: auto;
+    font-size: 12px;
+    background: var(--gray);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* =========================================
+   4. WINDOWS & POPUPS
+   ========================================= */
+.window {
+    background: var(--gray);
+    border: 2px solid;
+    border-color: var(--white) var(--dark-gray) var(--dark-gray) var(--white);
+    box-shadow: 1px 1px 0px black;
+    color: black;
+}
+
+.main-window {
+    width: 85%;
+    max-width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.title-bar {
+    background: var(--blue);
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-bar-text {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.title-bar-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.title-bar-controls button {
+    width: 20px;
+    height: 18px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 10px;
+    background: var(--gray);
+    border: 1px solid;
+    border-color: var(--white) var(--dark-gray) var(--dark-gray) var(--white);
+    box-shadow: none;
+}
+
+.window-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.field-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.field-row button {
+    min-width: 80px;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid;
+    border-color: var(--white) var(--dark-gray) var(--dark-gray) var(--white);
+    background: var(--gray);
+}
+
+.field-row button:active {
+    border-color: var(--dark-gray) var(--white) var(--white) var(--dark-gray);
+    transform: translate(1px, 1px);
+}
+
+/* Popups (The Chaos) */
+.popup {
+    position: absolute;
+    width: 220px;
+    z-index: 100;
+    animation: pop 0.1s ease-out;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* =========================================
+   5. ANIMATIONS & BSOD
+   ========================================= */
 @keyframes earthquake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-3px, -2px) rotate(-1deg); }
@@ -93,10 +312,158 @@ body {
 }
 
 .shake-effect {
-    animation: earthquake 0.5s; /* Shakes for 0.5 seconds */
+    animation: earthquake 0.5s;
     animation-iteration-count: 1;
 }
 
-button {
-    -webkit-tap-highlight-color: transparent; /* Removes grey tap box on iPhone */
+#bsod {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100dvh;
+    background-color: #0000AA;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    z-index: 9999;
+    overflow-y: auto;
 }
+
+.hidden { display: none; }
+
+.bsod-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.polaroid {
+    background: white;
+    padding: 10px;
+    margin-top: 30px;
+    max-width: 80%;
+    transform: rotate(-3deg);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.final-message {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.final-message h1 {
+    font-size: 24px;
+    color: #ffff00;
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   6. THE GRAND FINALE (BSOD 2.0)
+   ========================================= */
+#bsod {
+    /* Use a gradient instead of flat blue for more "magic" */
+    background: linear-gradient(135deg, #0000aa, #4b0082);
+    display: flex; /* Center everything */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.glitch-text {
+    font-size: 24px;
+    color: #00ff00; /* Hacker Green */
+    text-shadow: 2px 2px #ff00ff; /* Glitch effect */
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.console-text {
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin: 5px 0;
+    opacity: 0.8;
+}
+
+/* Cute Polaroid Photo */
+.photo-wrapper {
+    position: relative;
+    background: white;
+    padding: 10px 10px 30px 10px; /* Extra bottom padding for "polaroid" look */
+    width: 220px;
+    margin: 20px auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transform: rotate(-3deg);
+    transition: transform 0.3s;
+}
+.photo-wrapper:hover { transform: rotate(0deg) scale(1.05); }
+
+.polaroid-img { width: 100%; display: block; }
+
+.tape {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Typing Effect */
+.typewriter-box {
+    margin: 20px auto;
+    max-width: 90%;
+    min-height: 60px; /* Prevent jumping */
+}
+
+#love-message {
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.5;
+    display: inline;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    background: #fff;
+    animation: blink 1s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* The Prize Button */
+.win-btn {
+    background: #ff4081;
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: 3px solid white;
+    border-radius: 50px;
+    box-shadow: 0 0 15px #ff4081;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Floating Hearts Background */
+.floating-heart {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    animation: floatUp 4s linear infinite;
+    bottom: -50px;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Utility to hide elements */
+.hidden { display: none !important; }

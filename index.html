@@ -2,65 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>System Error</title>
     <link rel="stylesheet" href="https://unpkg.com/98.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
 </head>
 <body>
 
-<div id="desktop">
+<div id="boot-screen">
+    <div class="boot-text">
+        <p>LOVE-BIOS (c) 2026 System Inc.</p>
+        <p>BIOS Date: 02/14/26 14:00:00 Ver: 1.0.0</p>
+        <br>
+        <p>CPU: AMD Ryzen 7 5800X 8-Core Processor</p>
+        <p>Memory Test: 32768K OK</p>
+        <br>
+        <p>Detecting Primary Slave ... LAKSHAY_HEART_DRIVE</p>
+        <p>Detecting Primary Master ... PARINEETA_CACHE</p>
+        <br>
+        <p id="typing-text"></p>
+        <br>
+        <div class="loading-bar-container">
+            <div class="loading-bar" id="loadingBar"></div>
+        </div>
+    </div>
+</div>
 
-    <div class="window main-window">
+<div class="desktop-icons">
+    <div class="icon" onclick="alert('Access Denied: This heart belongs to Pariiii')">
+        <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png">
+        <p>My Heart</p>
+    </div>
+    <div class="icon" onclick="alert('Error: Bin is full of our toxicity')">
+        <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-4.png">
+        <p>Recycle Bin</p>
+    </div>
+    <div class="icon" onclick="alert('Searching for: The cutest girlfriend... Found!')">
+        <img src="https://win98icons.alexmeub.com/icons/png/msie1-2.png">
+        <p>Internet</p>
+    </div>
+    <div class="icon" onclick="openPhoto()">
+        <img src="https://win98icons.alexmeub.com/icons/png/camera3-2.png">
+        <p>Us_Final.jpg</p>
+    </div>
+</div>
+
+<div id="desktop">
+    <div class="window main-window" id="mainWindow">
         <div class="title-bar">
             <div class="title-bar-text">System_Heart_Monitor.exe</div>
             <div class="title-bar-controls">
-                <button aria-label="Minimize"></button>
-                <button aria-label="Maximize"></button>
-                <button aria-label="Close"></button>
+                <button aria-label="Minimize" id="minBtn"></button>
+                <button aria-label="Maximize" id="maxBtn"></button>
+                <button aria-label="Close" id="closeBtn"></button>
             </div>
         </div>
         <div class="window-body">
             <p style="text-align: center; margin-bottom: 20px;">
-                <img src="https://win98icons.alexmeub.com/icons/png/heart-0.png" width="32">
+                <img src="https://win98icons.alexmeub.com/icons/png/favorite-2.png" width="32">
                 <br><br>
-                <strong>CRITICAL ALERT:</strong><br>
-                High levels of affection detected.<br>
-                Do you accept these feelings?
+                <strong>⚠️ CRITICAL ERROR ⚠️</strong><br><br>
+                Listen, the system is struggling. "Itni shiddat" se code likha hai,
+                and now your smile is causing a total
+                <span style="color: #d32f2f; font-weight: bold;">System Meltdown</span>.
+                <br><br>
+                <strong>Basically..."Picture abhi baaki hai paplu." <br>
+                    Will you be my Valentine and fix this glitch?</strong>
             </p>
             <div class="field-row" style="justify-content: center;">
-                <button id="yes-btn" onclick="acceptLove()">Yes (Fix Error)</button>
-                <button id="no-btn">No (Abort)</button>
+                <button id="yes-btn" onclick="acceptLove()">YES</button>
+                <button id="no-btn">NO</button>
             </div>
         </div>
     </div>
+</div>
 
+<div class="taskbar">
+    <button class="start-btn">
+        <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="15">
+        <b>Start</b>
+    </button>
+    <div class="taskbar-divider"></div>
+    <div class="tasks">
+        <div class="task-item active">Lakshay_Heart_Monitor.exe</div>
+    </div>
+    <div class="tray">
+        <span id="clock">12:00 PM</span>
+    </div>
 </div>
 
 <div id="bsod" class="hidden">
+    <div class="hearts-container" id="heartsContainer"></div>
+
     <div class="bsod-content">
-        <p>A problem has been detected and your heart has been restarted to prevent damage.</p>
+        <h1 class="glitch-text">❤️ SYSTEM BINDED FOR LIFE ❤️</h1>
+        <p class="console-text">> Error Code: Heart_Missing_2019</p>
+        <p class="console-text">> Status: Heart stolen.</p>
         <br>
-        <p>LOVE_is_PATIENT_LOVE_is_KIND_0x0000001402</p>
+
+        <div class="photo-wrapper">
+            <img src="assets/us.jpg" alt="Us" class="polaroid-img">
+            <div class="tape"></div>
+        </div>
+
+        <div class="typewriter-box">
+            <p id="love-message"></p>
+            <span class="cursor">|</span>
+        </div>
+
         <br>
-        <p>If this is the first time you've seen this error screen, restart your computer. If this screen appears again,
-            follow these steps:</p>
-        <br>
-        <p>* Check to make sure you have adequate snacks.</p>
-        <p>* Check with your boyfriend for updates.</p>
-        <br>
-        <p>Technical Information:</p>
-        <p>*** STOP: 0x000000 (I LOVE YOU SO MUCH)</p>
-        <br>
-        <div class="final-message">
-            <img src="assets/us.jpg" alt="Us" class="polaroid">
-            <h1>Happy Valentine's Day! ❤️</h1>
-            <p>You're my favorite bug in the system.</p>
+        <button id="claim-btn" class="win-btn hidden" onclick="revealPrize()">
+            🎁 CLAIM YOUR PRIZE 🎁
+        </button>
+
+        <div id="prize-reveal" class="hidden">
+            <h2>🎉 You get me 4 life! 🎉</h2>
+            <p>(And unlimited kisses)</p>
+            <br>
+            <button onclick="location.reload()">Restart Game</button>
         </div>
     </div>
 </div>
 
-<audio id="error-sound" src="assets/error.mp3"></audio>
+<audio id="error-sound" src="assets/error.mp3" preload="auto"></audio>
 
 <script src="script.js"></script>
 </body>
