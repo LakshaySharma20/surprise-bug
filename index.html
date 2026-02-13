@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>System Error</title>
     <link rel="stylesheet" href="https://unpkg.com/98.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
 </head>
 <body>
 
@@ -36,11 +35,11 @@
         <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png">
         <p>My Heart</p>
     </div>
-    <div class="icon" onclick="alert('Error: Bin is full of our toxicity')">
+    <div class="icon" onclick="alert('Error: Bin is full of my toxicity')">
         <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_full-4.png">
         <p>Recycle Bin</p>
     </div>
-    <div class="icon" onclick="alert('Searching for: The cutest girlfriend... Found!')">
+    <div class="icon" onclick="alert('Searching for: The cutest girl... Found!')">
         <img src="https://win98icons.alexmeub.com/icons/png/msie1-2.png">
         <p>Internet</p>
     </div>
@@ -62,21 +61,27 @@
         </div>
         <div class="window-body">
             <p style="text-align: center; margin-bottom: 20px;">
-                <img src="https://win98icons.alexmeub.com/icons/png/favorite-2.png" width="32">
-                <br><br>
-                <strong>⚠️ CRITICAL ERROR ⚠️</strong><br><br>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQBQYWludC5ORVQgdjMuNS4xME766vYAAAFCSURBVFhH7ZUxS8RQEMf9C0VByEUEB0HExUVBv4S7u0V0cnXvB0hXp7u79AsId3V1cnXvB7i7u8vVvV8gXV3p6u4D8N7v897S65pYatfAg8uXvPxf8vLS9NisI9p9U6fR6vV9Njs266g8uBAnEicUfT67G0+C83z+f6mXmF7fL9W6VvT67G488Xj8f6mXmF7fL9W6VvT67G48Cf6H1EtMr++Xal0ren12N54Ez8T8A7zE9Pp+qda1otdnd+NJ8DykXmJ6fb9U61rR67O78ST4f0S9xPT6fqnWtaLXZ3fjSfA8pF5ien2/VOta0euzuzElGAnm9zLp9f1SrWtFr8/uxpRgXDC/l0mv75dqXSt6fXY3pgR3Bc8N9f8L6fX9Uq1rRa/P7sYvwe8nL0C9xPT6fqnWtaLXZ3fjSfA8pF5ien2/VOta0euzuzEn+G+f6vUDf5WvLwAAAABJRU5ErkJggg==" width="32" height="32" style="display: block; margin: 0 auto 10px;">
+                <br>
+                <strong>⚠️ KERNEL PANIC: EMOTIONAL_OVERFLOW ⚠️</strong><br><br>
                 Listen, the system is struggling. "Itni shiddat" se code likha hai,
                 and now your smile is causing a total
                 <span style="color: #d32f2f; font-weight: bold;">System Meltdown</span>.
                 <br><br>
-                <strong>Basically..."Picture abhi baaki hai paplu." <br>
-                    Will you be my Valentine and fix this glitch?</strong>
+                <strong>Will you stabilize this heart? <br> By being my Valentine ;)</strong>
             </p>
             <div class="field-row" style="justify-content: center;">
                 <button id="yes-btn" onclick="acceptLove()">YES</button>
                 <button id="no-btn">NO</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="repair-overlay" class="hidden">
+    <div class="repair-box">
+        <p>REPAIRING HEART SECTOR 0x01...</p>
+        <div class="loading-bar-container"><div class="loading-bar" id="repairBar"></div></div>
     </div>
 </div>
 
@@ -96,28 +101,22 @@
 
 <div id="bsod" class="hidden">
     <div class="hearts-container" id="heartsContainer"></div>
-
     <div class="bsod-content">
-        <h1 class="glitch-text">❤️ SYSTEM BINDED FOR LIFE ❤️</h1>
-        <p class="console-text">> Error Code: Heart_Missing_2019</p>
-        <p class="console-text">> Status: Heart stolen.</p>
+        <h1 class="glitch-text">❤️ SYSTEM BOUND FOR LIFE ❤️</h1>
+        <p class="console-text">> Status: Heart stolen successfully.</p>
         <br>
-
         <div class="photo-wrapper">
             <img src="assets/us.jpg" alt="Us" class="polaroid-img">
             <div class="tape"></div>
         </div>
-
         <div class="typewriter-box">
             <p id="love-message"></p>
             <span class="cursor">|</span>
         </div>
-
         <br>
         <button id="claim-btn" class="win-btn hidden" onclick="revealPrize()">
             🎁 CLAIM YOUR PRIZE 🎁
         </button>
-
         <div id="prize-reveal" class="hidden">
             <h2>🎉 You get me 4 life! 🎉</h2>
             <p>(And unlimited kisses)</p>
@@ -128,7 +127,6 @@
 </div>
 
 <audio id="error-sound" src="assets/error.mp3" preload="auto"></audio>
-
 <script src="script.js"></script>
 </body>
 </html>
